@@ -1,0 +1,14 @@
+<div class="row verclases">
+    <div class="col-12">
+        <h6>{{todasclases.titulo}}</h6>
+        <p>{{todasclases.descrip}}</p>
+    </div>
+    <div class="col-12">
+        <form class="row" action="http://10.0.2.15:8000/api/unirseclase" method="post">
+            <input name="email" type="hidden" value="{{emailviejo}}">
+            <input name="idclase" type="hidden" value="{{todasclases.id}}">
+            <button class="btn btn-success" type="submit" id="enviar">Unirse</button>
+        </form>
+    </div>
+</div>
+

@@ -1,0 +1,47 @@
+<div class="row">
+    <div class="col-12">
+        <div class="row">
+            <div class="col-12">
+                <div class="row vercompo" *ngIf='contenidosfin.urlimagen!=""'>
+                    <img class="col-8" src="{{contenidosfin.urlimagen}}" alt="">
+                    <p class="col-4 text-right text-muted">{{contenidosfin.fechapublica}}</p>
+                    <div class="col-12" *ngIf='rol=="ROLE_PROFE"'>
+                    <form  action="http://10.0.2.15:8000/api/eliminarcontenido" method="post" name="formulario3">
+                        <input name="emailviejo" type="hidden" value="{{emailviejo}}">
+                        <input name="id" type="hidden" value="{{contenidosfin.id}}">
+                        <div class="row">
+                            <button class="btn btn-success espaciobtones" type="submit" id="enviar">Eliminar</button>
+                        </div>
+                    </form>
+                    </div>
+                </div>
+                <div class="row vercompo" *ngIf='contenidosfin.texto!=""'>
+                    <p class="col-8">{{contenidosfin.texto}}</p>
+                    <p class="col-4 text-right text-muted">{{contenidosfin.fechapublica}}</p>
+                    <div class="col-12" *ngIf='rol=="ROLE_PROFE"'>
+                    <form  action="http://10.0.2.15:8000/api/eliminarcontenido" method="post" name="formulario3">
+                        <input name="emailviejo" type="hidden" value="{{emailviejo}}">
+                        <input name="id" type="hidden" value="{{contenidosfin.id}}">
+                        <div class="row">
+                            <button class="btn btn-success espaciobtones" type="submit" id="enviar">Eliminar</button>
+                        </div>
+                    </form>
+                    </div>
+                </div>
+                <div class="row vercompo" *ngIf='contenidosfin.video!=""'>
+                    <a class="col-8" href="{{contenidosfin.video}}">Vídeo: {{contenidosfin.video}}</a>
+                    <p class="col-4 text-right text-muted">{{contenidosfin.fechapublica}}</p>
+                    <div class="col-12" *ngIf='rol=="ROLE_PROFE"'>
+                    <form  action="http://10.0.2.15:8000/api/eliminarcontenido" method="post" name="formulario3">
+                        <input name="emailviejo" type="hidden" value="{{emailviejo}}">
+                        <input name="id" type="hidden" value="{{contenidosfin.id}}">
+                        <div class="row">
+                            <button class="btn btn-success espaciobtones" type="submit" id="enviar">Eliminar</button>
+                        </div>
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

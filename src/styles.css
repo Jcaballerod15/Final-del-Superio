@@ -1,0 +1,56 @@
+body{
+    background-color: rgb(178, 250, 178);
+}
+.margenbordelog{
+    padding: 10px;
+    margin-top: 50px;
+    border-radius: 10%;
+    border: solid rgb(34, 168, 34) 5px;
+}
+.botonesmenu{
+    background-color: green;
+    color: white;
+    padding: 10px;
+}
+.bordetodos{
+    margin-top: 50px;
+    padding: 10px;
+}
+.bordebotonesmenu{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.espaciobtones{
+    margin-bottom: 5px;
+}
+.paddingcentro{
+    padding: 10px;
+}
+.paddinderecha{
+    padding-top: 10px;
+}
+.paddinizquierda{
+    padding-top: 10px;
+}
+.textopropio{
+    padding: 5px;
+    margin: 5px;
+    background-color: rgb(127, 247, 127);
+    border-radius: 5%;
+}
+.textootro{
+    padding: 5px;
+    margin: 5px;
+    background-color: white;
+    border-radius: 5%;
+}
+.verclases{
+    margin-top: 5px;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: white;
+}
+.vercompo{
+    margin-top: 5px;
+    margin-bottom: 10px;
+}

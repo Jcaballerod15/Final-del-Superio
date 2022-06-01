@@ -1,0 +1,136 @@
+<div class="row" *ngIf='login=="0"'>
+    <div class="col-3">
+
+    </div>
+    <div class="col-6 margenbordelog text-center">
+        <h3>Login</h3>
+        Email: <input id="email" type="text" name="email" #email><br><br>
+        Password: <input id="pass" type="password" name="pass" #pass><br><br>
+        <button class="btn btn-success" id="enviar" (click)="alogin(email.value, pass.value)">Enviar</button>
+        <a class="btn btn-success" href="http://10.0.2.15:8000/registro">Registrarse</a>
+    </div>
+    <div class="col-3">
+        
+    </div>
+</div>
+<main class="row" *ngIf='login=="1"'>
+    <button class="col-4 botonesmenu" (click)="clases()"><h4>Clases</h4></button>
+    <button class="col-4 botonesmenu"(click)="salas()"><h4>Chat</h4></button>
+    <button class="col-4 botonesmenu" (click)="getuser()"><h4>Usuario</h4></button>
+</main>
+<div class="row" *ngIf='login=="1" && vistaactual=="user"'>
+    <div class="col-4">
+
+    </div>
+    <div class="col-4 text-center bordetodos">
+        <app-ver-user *ngFor= "let user of usuarios; let i=index" [usuariosfin]= "user" [indice]= "i"></app-ver-user>
+        <br>
+        <button class="btn btn-success" id="enviar" (click)="alogout()">Logout</button>
+    </div>
+    <div class="col-4">
+        
+    </div>
+</div>
+<div class="row" *ngIf='login=="1" && vistaactual=="sala"'>
+    <div class="col-3 paddinizquierda">
+        <app-ver-sala *ngFor= "let sal of salasuser; let i=index" [salasfin]= "sal" [indice]= "i"></app-ver-sala>
+    </div>
+    <div class="col-6" *ngIf='login=="1" && vistasecundaria=="mensa"'>
+        <div class="row">
+            <form action="http://10.0.2.15:8000/api/enviar" method="post" name="formulariofin">
+                <div class="col-12">
+                    <input name="emailviejo" type="hidden" value="{{gmail}}">
+                    <input name="sala" type="hidden" value="{{salaactual}}">
+                    <input class="col-10" name="texto" type="text" required minlength="1" maxlength="100" placeholder="Texto">
+                    <!-- <input type="checkbox" name="nRegistro" [checked]="hablitarCuadro1" (click)="setCudaro1()"> -->
+                    <button class="col-2 btn btn-success" type="submit" id="enviar">Enviar</button>
+                </div>
+            </form>
+        </div>
+        <div class="row">
+            <app-ver-mensaje  *ngFor= "let men of mesnajes; let i=index" [mensajesfin]= "men" [indice]= "i"></app-ver-mensaje>
+        </div>
+    </div>
+    <div class="col-3">
+        
+    </div>
+</div>
+<div class="row" *ngIf='login=="1" && vistaactual=="clase"'>
+    <div class="col-3 paddinizquierda">
+        <button class="col-12 bordebotonesmenu btn btn-success" id="crear" *ngIf='rol=="ROLE_PROFE"' (click)="crearClase()">Crear clase</button>
+        <button class="col-12 bordebotonesmenu btn btn-success" id="ver" *ngIf='rol=="ROLE_ALUMNO"' (click)="verClases()">Ver clases</button>
+        <h5>Clases</h5>
+        <app-ver-clase *ngFor= "let clase of clas; let i=index" [clasesfin]= "clase" [indice]= "i"></app-ver-clase>
+    </div>
+    <div class="col-6">
+        <div class="row paddingcentro" *ngIf='login=="1" && vistasecundaria=="crearclase"'>
+            <form id="formulario2" action="http://10.0.2.15:8000/api/crearclase" method="post" name="formulario2">
+                <div class="col-12">
+                    <input id="emailviejo" name="emailviejo" type="hidden" value="{{gmail}}">
+                    <label for="">Título:</label><br>
+                    <input class="col-12" id="titulo" name="titulo" type="text" required minlength="1" maxlength="50" placeholder="Nombre de la clase">
+                    <!-- <input type="checkbox" name="nRegistro" [checked]="hablitarCuadro1" (click)="setCudaro1()"> -->
+                </div>
+                <div class="col-12">
+                    <label for="">Descripción:</label><br>
+                    <textarea class="col-12" name="descrip" id="descrip" required minlength="1" maxlength="150" placeholder="Corta descripción de temas a tratar en la clase"></textarea>
+                </div>
+                <div class="col-12">
+                    <div class="row">
+                        <button class="bordebotonesmenu btn btn-success" type="submit" id="enviar">Crear</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="row paddingcentro" *ngIf='login=="1" && vistasecundaria=="crearcontenido"'>
+            <form id="formulario2" action="http://10.0.2.15:8000/api/crearcontenido" method="post" name="formulario4">
+                <div class="col-12">
+                    <input name="idclase" type="hidden" value="{{claseactual}}">
+                    <label for=""><h6>Tipo de contenido:</h6></label><br>
+                    <select name="tipo">
+                        <option value="1">Texto</option>
+                        <option value="2" selected>Imagen</option>
+                        <option value="3">Video</option>
+                      </select><br>
+                    <p>Si es video o imagen introducir la url, en caso de texto solo introducir el texto</p>
+                    <input class="col-12" name="url" type="text" required minlength="1" placeholder="url en caso de imagen o video">
+                </div>
+                <div class="col-12">
+                    <div class="row">
+                        <button class="bordebotonesmenu btn btn-success" type="submit">Crear</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="row paddingcentro" *ngIf='login=="1" && vistasecundaria=="contenidoclase"'>
+            <div class="col-12" *ngIf='rol=="ROLE_PROFE"'>
+                <form class="row" action="http://10.0.2.15:8000/api/eliminarclase" method="post">
+                    <input name="idfuera" type="hidden" value="{{claseactual}}">
+                    <button class="bordebotonesmenu btn btn-success" type="submit" id="enviar">Eliminar clase</button>
+                </form>
+                <div class="row">
+                <button class="bordebotonesmenu btn btn-success" id="ver" (click)="crearContenido()">Introducir contenidos</button>
+                </div>
+            </div>
+            <app-ver-contenido *ngFor= "let user of contenido; let i=index" [contenidosfin]= "user" [indice]= "i"></app-ver-contenido>
+        </div>
+        <div class="row paddingcentro" *ngIf='login=="1" && vistasecundaria=="todaslasclases"'>
+            <div class="col-12">
+                <input id="buscar" type="text" name="email" #texto placeholder="Nombre de la clase">
+                <button class="btn btn-success" id="ver" (click)="buscarClase(texto.value)">Buscar</button>
+            </div>
+            <div class="col-12">
+                <app-ver-todasclases *ngFor= "let user of todaslasclases; let i=index" [todasclases]= "user" [indice]= "i"></app-ver-todasclases>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-3 paddinderecha">
+        <div class="row" *ngIf='login=="1" && vistasecundaria=="contenidoclase"'>
+            <div class="col-12">
+                <h5>Alumnos</h5>
+            </div>
+            <app-ver-clasesusuarios *ngFor= "let user of usuariosclase; let i=index" [userfin]= "user" [indice]= "i"></app-ver-clasesusuarios>
+        </div>
+    </div>
+</div>

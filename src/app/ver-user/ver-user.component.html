@@ -1,0 +1,29 @@
+<div class="row">
+    <div class="col-12">
+        <div class="row">
+            <form id="formulario1" action="http://10.0.2.15:8000/api/editardatosuser" method="post" name="formulario1">
+            <div class="col-12">
+                <input id="emailviejo" name="emailviejo" type="hidden" value="{{emailviejo}}">
+                <label for="">Nombre:</label>
+                <input id="nombre" name="nombre" type="text" value="{{usuariosfin.nombre}}" [disabled]="false">
+                <!-- <input type="checkbox" name="nRegistro" [checked]="hablitarCuadro1" (click)="setCudaro1()"> -->
+            </div>
+            <div class="col-12">
+                <label for="">Email:</label>
+                <input id="emaile" name="emaile" type="email" value="{{usuariosfin.email}}" [disabled]="true">
+                <!-- <input type="checkbox" name="nRegistro" [checked]="hablitarCuadro2" (click)="setCudaro2()"> -->
+            </div>
+            <div class="col-12">
+                <label for="">Rol:</label>
+                <input id="emaile" name="emaile" type="email" value="{{rol}}" [disabled]="true">
+            </div>
+            <br>
+            <div class="col-12">
+                <div class="row">
+                    <button class="btn btn-success" type="submit" id="enviar" (click)="editado()">Editar</button>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>

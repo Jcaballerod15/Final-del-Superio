@@ -1,0 +1,10 @@
+<div class="col-12">
+    <div class="row textopropio" *ngIf='mensajesfin.emailemisor==emailviejo'>
+        <div class="col-9">{{mensajesfin.texto}}</div>
+        <div class="col-3 text-muted small">{{mensajesfin.fecha}}</div>
+    </div>
+    <div class="row textootro" *ngIf='mensajesfin.emailemisor!=emailviejo'>
+        <div class="col-9">{{mensajesfin.texto}}</div>
+        <div class="col-3 text-muted small">{{mensajesfin.fecha}}</div>
+    </div>
+</div>
